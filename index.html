@@ -10,7 +10,7 @@
         h1 { color: #333; }
         #recherche { text-align: center; margin-bottom: 40px; }
         input[type="text"] { padding: 10px; width: 60%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 15px; background-color: #5cb85c; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button { padding: 10px 15px; background-color: #5cb85c; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;}
         button:hover { background-color: #4cae4c; }
         .ressources { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .ressources ul { list-style: none; padding: 0; }
@@ -28,15 +28,15 @@
 
     <div id="recherche">
         <h2>🔎 Rechercher un outil d'aide</h2>
-        <input type="text" id="barreRecherche" placeholder="Ex: Calculatrice scientifique, Conjugaison..." aria-label="Barre de recherche">
-        <button onclick="alert('La recherche n\'est pas encore implémentée !')">Rechercher</button>
+        <input type="text" id="barreRecherche" onkeyup="filtrerRessources()" placeholder="Ex: Calculatrice scientifique, Conjugaison..." aria-label="Barre de recherche">
+        <button onclick="filtrerRessources()">Rechercher</button>
     </div>
 
     <hr>
 
     <div class="ressources">
         <h2>🛠️ Outils et Ressources Populaires</h2>
-        <ul>
+        <ul id="listeRessources">
             <li>
                 <a href="https://exemple.com/outil1" target="_blank">Calculatrice Graphique en Ligne</a>
                 - Pour les maths complexes.
@@ -56,6 +56,40 @@
         </ul>
         <p>Cliquez sur le nom pour accéder à l'outil.</p>
     </div>
+
+    <script>
+        // Fonction qui filtre la liste des ressources
+        function filtrerRessources() {
+            // 1. Déclarer les variables et obtenir les éléments
+            let input, filtre, ul, li, a, i, txtValue;
+            
+            // Récupère la valeur de la barre de recherche et la met en majuscule pour la comparaison
+            input = document.getElementById('barreRecherche');
+            filtre = input.value.toUpperCase();
+            
+            // Récupère l'élément UL (la liste) et tous les éléments LI (les ressources)
+            ul = document.getElementById('listeRessources');
+            li = ul.getElementsByTagName('li');
+
+            // 2. Parcourir toutes les ressources (li) et masquer celles qui ne correspondent pas au filtre
+            for (i = 0; i < li.length; i++) {
+                // On cible le lien (a) dans le li, car il contient le nom de l'outil
+                a = li[i].getElementsByTagName('a')[0];
+                
+                // On récupère le texte visible de la ressource
+                txtValue = a.textContent || a.innerText;
+                
+                // Si le texte de la ressource contient le filtre de recherche...
+                if (txtValue.toUpperCase().indexOf(filtre) > -1) {
+                    // ...on affiche la ressource
+                    li[i].style.display = "";
+                } else {
+                    // ...sinon, on la masque
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
