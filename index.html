@@ -3,89 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil | Aide Scolaire</title>
+    <title>Accueil | Centre d'Aide Scolaire</title>
+    
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 20px; background-color: #f4f4f9; }
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { color: #333; }
-        #recherche { text-align: center; margin-bottom: 40px; }
-        input[type="text"] { padding: 10px; width: 60%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 15px; background-color: #5cb85c; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 5px;}
-        button:hover { background-color: #4cae4c; }
-        .ressources { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .ressources ul { list-style: none; padding: 0; }
-        .ressources li { margin-bottom: 10px; padding: 8px; border-bottom: 1px dotted #eee; }
-        .ressources a { text-decoration: none; color: #337ab7; font-weight: bold; }
-        .ressources a:hover { text-decoration: underline; }
+        /* VARIABLES (Optionnel mais propre) */
+        :root {
+            --couleur-primaire: #007bff; /* Bleu vif pour les actions */
+            --couleur-secondaire: #28a745; /* Vert pour le succès/bouton */
+            --couleur-fond: #f8f9fa;
+            --couleur-texte: #343a40;
+            --couleur-bordure: #ced4da;
+        }
+
+        /* BASE ET TYPOGRAPHIE */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: var(--couleur-fond);
+            color: var(--couleur-texte);
+            line-height: 1.6;
+        }
+
+        /* CONTENEUR PRINCIPAL */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* EN-TÊTE */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--couleur-bordure);
+        }
+        h1 {
+            color: var(--couleur-primaire);
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        h2 {
+            color: var(--couleur-secondaire);
+            border-left: 4px solid var(--couleur-secondaire);
+            padding-left: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* BARRE DE RECHERCHE */
+        #recherche {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        input[type="text"] {
+            padding: 12px 15px;
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid var(--couleur-bordure);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: var(--couleur-primaire);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        button {
+            padding: 12px 20px;
+            background-color: var(--couleur-primaire);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* LISTE DES RESSOURCES */
+        #listeRessources {
+            list-style: none;
+            padding: 0;
+        }
+        #listeRessources li {
+            margin-bottom: 12px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        #listeRessources li:hover {
+            background-color: #e9f5ff;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+        }
+        #listeRessources a {
+            text-decoration: none;
+            color: var(--couleur-secondaire);
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+        #listeRessources a:hover {
+            color: var(--couleur-primaire);
+            text-decoration: underline;
+        }
+        .ressources p {
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            padding-top: 10px;
+            border-top: 1px dotted var(--couleur-bordure);
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>📚 Centre d'Aide Scolaire</h1>
-        <p>Trouvez rapidement les outils et ressources dont vous avez besoin.</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>📚 Centre d'Aide Scolaire</h1>
+            <p>Trouvez rapidement les outils et ressources dont vous avez besoin.</p>
+        </header>
 
-    <div id="recherche">
-        <h2>🔎 Rechercher un outil d'aide</h2>
-        <input type="text" id="barreRecherche" onkeyup="filtrerRessources()" placeholder="Ex: Calculatrice scientifique, Conjugaison..." aria-label="Barre de recherche">
-        <button onclick="filtrerRessources()">Rechercher</button>
+        <div id="recherche">
+            <h2>🔎 Rechercher un outil d'aide</h2>
+            <input type="text" id="barreRecherche" onkeyup="filtrerRessources()" placeholder="Ex: Maths, Conjugaison, Python..." aria-label="Barre de recherche">
+            <button onclick="filtrerRessources()">Rechercher</button>
+        </div>
+
+        <hr>
+
+        <div class="ressources">
+            <h2>🛠️ Outils et Ressources Populaires</h2>
+            <ul id="listeRessources">
+                <li>
+                    <a href="https://exemple.com/outil1" target="_blank">Calculatrice Graphique en Ligne</a>
+                    - Pour les **maths complexes**, les **fonctions** et les **statistiques**.
+                </li>
+                <li>
+                    <a href="https://exemple.com/outil2" target="_blank">Dictionnaire de Synonymes et Antonymes</a>
+                    - Améliorez votre **vocabulaire**, idéal pour la **rédaction** de dissertations.
+                </li>
+                <li>
+                    <a href="https://exemple.com/outil3" target="_blank">Référence de Conjugaison Française</a>
+                    - Maîtrisez les **verbes**, l'**orthographe** et la **grammaire**.
+                </li>
+                <li>
+                    <a href="https://exemple.com/outil4" target="_blank">Tutoriels de Programmation (Python)</a>
+                    - Pour l'**informatique**, le **code** et les projets **scientifiques**.
+                </li>
+            </ul>
+            <p>Cliquez sur le nom pour accéder à l'outil.</p>
+        </div>
     </div>
-
-    <hr>
-
-    <div class="ressources">
-        <h2>🛠️ Outils et Ressources Populaires</h2>
-        <ul id="listeRessources">
-            <li>
-                <a href="https://quizlet.com/fr/1105490248/vocabulaire-espagnol-les-sport-flash-cards/" target="_blank">Les Sport en espagnol</a>
-                - Quizlet
-            </li>
-            <li>
-                <a href="https://exemple.com/outil2" target="_blank">Dictionnaire de Synonymes et Antonymes</a>
-                - Améliorez votre vocabulaire.
-            </li>
-            <li>
-                <a href="https://exemple.com/outil3" target="_blank">Référence de Conjugaison Française</a>
-                - Maîtrisez les verbes.
-            </li>
-            <li>
-                <a href="https://exemple.com/outil4" target="_blank">Tutoriels de Programmation (Python)</a>
-                - Pour l'informatique.
-            </li>
-        </ul>
-        <p>Cliquez sur le nom pour accéder à l'outil.</p>
-    </div>
-
+    
     <script>
-        // Fonction qui filtre la liste des ressources
         function filtrerRessources() {
-            // 1. Déclarer les variables et obtenir les éléments
-            let input, filtre, ul, li, a, i, txtValue;
+            let input, filtre, ul, li, i, txtValueNom, txtValueDesc;
             
-            // Récupère la valeur de la barre de recherche et la met en majuscule pour la comparaison
+            // 1. Récupération de l'entrée utilisateur et mise en majuscules
             input = document.getElementById('barreRecherche');
             filtre = input.value.toUpperCase();
             
-            // Récupère l'élément UL (la liste) et tous les éléments LI (les ressources)
             ul = document.getElementById('listeRessources');
             li = ul.getElementsByTagName('li');
 
-            // 2. Parcourir toutes les ressources (li) et masquer celles qui ne correspondent pas au filtre
+            // 2. Boucle à travers toutes les ressources
             for (i = 0; i < li.length; i++) {
-                // On cible le lien (a) dans le li, car il contient le nom de l'outil
-                a = li[i].getElementsByTagName('a')[0];
+                // A. Cible le nom de la ressource (le texte dans le <a>)
+                let a = li[i].getElementsByTagName('a')[0];
+                txtValueNom = a.textContent || a.innerText;
                 
-                // On récupère le texte visible de la ressource
-                txtValue = a.textContent || a.innerText;
-                
-                // Si le texte de la ressource contient le filtre de recherche...
-                if (txtValue.toUpperCase().indexOf(filtre) > -1) {
-                    // ...on affiche la ressource
-                    li[i].style.display = "";
+                // B. Cible la description (tout le texte du <li> moins le texte du <a>)
+                let fullText = li[i].textContent || li[i].innerText;
+                txtValueDesc = fullText.replace(txtValueNom, '').trim();
+
+                // 3. Vérification : Si le filtre correspond au Nom OU à la Description
+                if (txtValueNom.toUpperCase().indexOf(filtre) > -1 || txtValueDesc.toUpperCase().indexOf(filtre) > -1) {
+                    li[i].style.display = ""; // Afficher
                 } else {
-                    // ...sinon, on la masque
-                    li[i].style.display = "none";
+                    li[i].style.display = "none"; // Masquer
                 }
             }
         }
