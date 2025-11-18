@@ -1,9 +1,9 @@
 const ressourcesScolaires = [
     {
-        nom: "Calculatrice Graphique en Ligne",
-        lien: "https://exemple.com/outil1",
-        description: "Pour les maths complexes, les fonctions et les statistiques.",
-        motsCles: "calcul, graphique, fonctions, statistiques, algèbre, trigonométrie, mathématiques, outils, maths"
+        nom: "Vocabulaire les sport Espagnol",
+        lien: "https://quizlet.com/fr/1105490248/vocabulaire-espagnol-les-sport-flash-cards/",
+        description: "Révison Quizlet.",
+        motsCles: "Esp,sport,Vocabulaire,app,apprendre,connaitre,tuto,Quizlet"
     },
     {
         nom: "Dictionnaire de Synonymes et Antonymes",
